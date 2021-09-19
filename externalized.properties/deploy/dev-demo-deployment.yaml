@@ -13,9 +13,9 @@ kind: ConfigMap
 metadata:
   name: dev-extranalized-config
 data:
-  org: abc extranalized dev
-  title: abc extranalized dev organization title
-  contact: abc extranalized dev organization contact
+  organization.name: abc extranalized dev
+  organization.title: abc extranalized dev organization title
+  organization.contact: abc extranalized dev organization contact
 
 ---
 apiVersion: apps/v1
@@ -63,6 +63,10 @@ spec:
           envFrom:
             - configMapRef:
                 name: dev-extranalized-config
+
+
+### create service with External IP address
+# kubectl expose deployment extranalized-spring-configration --type=LoadBalancer  --name=extranalized-config-service --port=80 --target-port=9090
 
 #---
 #apiVersion: v1
