@@ -10,7 +10,8 @@ spec:
       name: spring-config-map
       ports:
         - containerPort: 8080
-      imagePullPolicy: IfNotPresent
+      imagePullPolicy: Always
+      command: [ "/bin/sh", "-c", "env" ]
       env:
         - name: SPRING_PROFILE
           value: dev
