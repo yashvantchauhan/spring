@@ -15,7 +15,7 @@ ConfigMaps and Secrets can be configured in two ways:
 
 # As Environment Variables 
 Create kubernetes ConfigMap and Secrets, sample snippet is below
-
+``` yaml
 # ConfigMap
 
 apiVersion: v1
@@ -26,8 +26,9 @@ data:
 organization.name: abc extranalized dev
 organization.title: abc extranalized dev organization title
 organization.contact: abc extranalized dev organization contact
+``` 
 
-
+``` yaml
 # Secrets
 apiVersion: v1
 kind: Secret
@@ -38,7 +39,9 @@ data:
 # You can include additional key value pairs as you do with Opaque Secrets
 database.username: devuser1
 database.password: MWYyZDFlMmU2N2Rm
+``` 
 
+``` yaml
 # Application deployment snippet to use above ConfigMap and Secret as Environment variable
 env:
 - name: SERVER_PORT
@@ -50,10 +53,11 @@ envFrom:
     name: dev-extranalized-config
 - secretRef:
     name: dev-extranalized-secret
-  
+```   
 Once docker is build and deployed to kubernetes cluster hit URL to validate the response.
 
 Url : http://{IP_ADDRESS}:{PORT}/properties/title
+``` json
 Response: 
     {
         "databaseUsername": "u�����",
@@ -63,5 +67,5 @@ Response:
             "title": "abc extranalized dev organization title"
         }
     }
-
+```
 
