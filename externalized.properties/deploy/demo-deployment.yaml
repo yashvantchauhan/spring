@@ -3,14 +3,13 @@ kind: ConfigMap
 metadata:
   name: spring-config
 data:
-  port: 8080
   tenant: abc
   title: abc organization title
   contact: abc organization contact
 
 ---
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   labels:
     app: extranalized-spring-configration
@@ -22,10 +21,7 @@ spec:
       imagePullPolicy: IfNotPresent
       env:
         - name: app.port
-          valueFrom:
-            configMapKeyRef:
-              name: spring-config
-              key:  port
+          value: "8080"
         - name: app.profile
           valueFrom:
             configMapKeyRef:
@@ -48,15 +44,15 @@ spec:
               key: contact
   restartPolicy: Never
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: extranalized-spring-configration-service
-spec:
-  selector:
-    app: extranalized-spring-configration
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: extranalized-spring-configration-service
+#spec:
+#  selector:
+#    app: extranalized-spring-configration
+#  ports:
+#    - protocol: TCP
+#      port: 80
+#      targetPort: 8080
