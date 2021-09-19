@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spring-config
+data:
+  organization.name: abc
+  organization.title: abc organization title
+  organization.contact: abc organization contact
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: extranalized-spring-configration
+  name: extranalized-spring-configration
+spec:
+  containers:
+    - image: gcr.io/externalized.properties/latest:v1
+      name: extranalized-spring-configration
+      ports:
+        - containerPort: 8080
+      imagePullPolicy: IfNotPresent
+      env:
+        - name: app.port
+          value: 8080
+        - name: app.profile
+          value: dev
+        - name: organization.name
+          valueFrom:
+            configMapKeyRef:
+              name: spring-config
+              key: organization.name
+        - name: organization.title
+          valueFrom:
+            configMapKeyRef:
+              name: spring-config
+              key: organization.title
+        - name: organization.contact
+          valueFrom:
+            configMapKeyRef:
+              name: spring-config
+              key: organization.contact
+  restartPolicy: Never
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: extranalized-spring-configration-service
+spec:
+  selector:
+    app: extranalized-spring-configration
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
