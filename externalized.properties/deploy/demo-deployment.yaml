@@ -27,9 +27,10 @@ spec:
       containers:
         - image: gcr.io/externalized-properties/latest:v1
           name: extranalized-spring-configration
-          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9090
+          imagePullPolicy: Always
+          command: [ "/bin/sh", "-c", "env" ]
           env:
             - name: app.profile
               valueFrom:
@@ -51,6 +52,9 @@ spec:
                 configMapKeyRef:
                   name: spring-config
                   key: contact
+          envFrom:
+            - configMapRef:
+                name: spring-config
 
 
 #---

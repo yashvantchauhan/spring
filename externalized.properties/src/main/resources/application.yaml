@@ -1,5 +1,3 @@
-server:
-  port: ${app.port}
 spring:
   config:
     activate:
