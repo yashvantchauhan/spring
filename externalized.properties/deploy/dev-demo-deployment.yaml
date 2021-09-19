@@ -18,6 +18,16 @@ data:
   organization.contact: abc extranalized dev organization contact
 
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: dev-extranalized-secret
+type: Opaque
+data:
+  # You can include additional key value pairs as you do with Opaque Secrets
+  database.username: devuser1
+  database.password: MWYyZDFlMmU2N2Rm
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -63,6 +73,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: dev-extranalized-config
+            - secretRef:
+                name: dev-extranalized-secret
 
 
 ### create service with External IP address

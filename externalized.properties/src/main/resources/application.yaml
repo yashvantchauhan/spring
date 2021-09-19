@@ -16,3 +16,7 @@ tenant:
   name: ${organization.name}
   title: ${organization.title}
   contact: ${organization.contact}
+
+datasource:
+  username: ${database.username}
+  password: ${database.password}
