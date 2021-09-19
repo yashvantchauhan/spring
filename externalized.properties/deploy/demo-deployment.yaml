@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: spring-config
 data:
-  tenant: abc
+  org: abc
   title: abc organization title
   contact: abc organization contact
 
@@ -31,11 +31,20 @@ spec:
             - containerPort: 9090
           imagePullPolicy: Always
           env:
+            - name: SERVER_PORT
+              value: "9090"
+            - name: SPRING_PROFILES_ACTIVE
+              value: abc
+            - name: ORGANIZATION_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: spring-config
+                  key: org
             - name: organization.name
               valueFrom:
                 configMapKeyRef:
                   name: spring-config
-                  key: tenant
+                  key: org
             - name: organization.title
               valueFrom:
                 configMapKeyRef:
