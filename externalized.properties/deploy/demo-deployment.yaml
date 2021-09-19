@@ -16,7 +16,7 @@ metadata:
   name: extranalized-spring-configration
 spec:
   containers:
-    - image: gcr.io/externalized.properties/latest:v1
+    - image: gcr.io/externalized-properties/latest:v1
       name: extranalized-spring-configration
       ports:
         - containerPort: 8080

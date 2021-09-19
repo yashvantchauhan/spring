@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example.spring</groupId>
-	<artifactId>externalized.properties</artifactId>
+	<artifactId>externalized-properties</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>externalized.properties</name>
+	<name>externalized-properties</name>
 	<description>Demo externalized properties using k8s config-map</description>
 	<properties>
 		<java.version>1.8</java.version>
