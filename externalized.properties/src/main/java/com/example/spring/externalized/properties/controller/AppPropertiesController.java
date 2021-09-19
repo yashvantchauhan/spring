@@ -23,6 +23,9 @@ public class AppPropertiesController {
     @Value("${datasource.password}")
     String password;
 
+    @Value("${datasource.service}")
+    String service;
+
     @Autowired
     TenantConfig tenantConfig;
 
@@ -34,8 +37,10 @@ public class AppPropertiesController {
         config.put(key, tenantConfig.getTenant().get(key));
         log.info("Received key: {} , Value: {} ",key, tenantConfig.getTenant().get(key));
 
-        ConfigResponse response=ConfigResponse.builder().
-                config(config).databasePassword(password).databaseUsername(username).build();
+        ConfigResponse response=ConfigResponse.builder()
+                .config(config)
+                .databaseService(service)
+                .databasePassword(password).databaseUsername(username).build();
         log.info("Response: {} ",response);
         return Mono.just(response);
     }

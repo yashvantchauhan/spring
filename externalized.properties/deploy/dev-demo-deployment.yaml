@@ -23,6 +23,8 @@ kind: Secret
 metadata:
   name: dev-extranalized-secret
 type: Opaque
+stringData:
+  database.service: clear text default is base64 encoded strings.
 data:
   # You can include additional key value pairs as you do with Opaque Secrets
   database.username: devuser1

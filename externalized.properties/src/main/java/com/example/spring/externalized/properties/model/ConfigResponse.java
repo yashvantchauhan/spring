@@ -12,5 +12,6 @@ import java.util.Map;
 public class ConfigResponse {
     String databaseUsername;
     String databasePassword;
+    String databaseService;
     Map<String, String> config;
 }

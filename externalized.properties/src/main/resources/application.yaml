@@ -18,5 +18,6 @@ tenant:
   contact: ${organization.contact}
 
 datasource:
+  service: ${database.service}
   username: ${database.username}
   password: ${database.password}
