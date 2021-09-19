@@ -23,34 +23,34 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/name: load-balancer-extranalized-spring-configration
-  spec:
-    containers:
-      - image: gcr.io/externalized-properties/latest:v1
-        name: extranalized-spring-configration
-        imagePullPolicy: IfNotPresent
-        env:
-          - name: app.port
-            value: "8080"
-          - name: app.profile
-            valueFrom:
-              configMapKeyRef:
-                name: spring-config
-                key: tenant
-          - name: organization.name
-            valueFrom:
-              configMapKeyRef:
-                name: spring-config
-                key: tenant
-          - name: organization.title
-            valueFrom:
-              configMapKeyRef:
-                name: spring-config
-                key: title
-          - name: organization.contact
-            valueFrom:
-              configMapKeyRef:
-                name: spring-config
-                key: contact
+    spec:
+      containers:
+        - image: gcr.io/externalized-properties/latest:v1
+          name: extranalized-spring-configration
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: app.port
+              value: "8080"
+            - name: app.profile
+              valueFrom:
+                configMapKeyRef:
+                  name: spring-config
+                  key: tenant
+            - name: organization.name
+              valueFrom:
+                configMapKeyRef:
+                  name: spring-config
+                  key: tenant
+            - name: organization.title
+              valueFrom:
+                configMapKeyRef:
+                  name: spring-config
+                  key: title
+            - name: organization.contact
+              valueFrom:
+                configMapKeyRef:
+                  name: spring-config
+                  key: contact
 
 
 #---
