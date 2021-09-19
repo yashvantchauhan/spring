@@ -1,7 +1,9 @@
+server:
+  port: 9090
 spring:
   config:
     activate:
-      on-profile: ${app.profile}
+      on-profile: abc
 tenant:
   name: ${organization.name}
   title: ${organization.title}

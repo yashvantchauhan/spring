@@ -30,13 +30,7 @@ spec:
           ports:
             - containerPort: 9090
           imagePullPolicy: Always
-          command: [ "/bin/sh", "-c", "env" ]
           env:
-            - name: app.profile
-              valueFrom:
-                configMapKeyRef:
-                  name: spring-config
-                  key: tenant
             - name: organization.name
               valueFrom:
                 configMapKeyRef:
