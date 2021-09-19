@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   name: spring-config
 data:
+  port: 8080
   tenant: abc
   title: abc organization title
   contact: abc organization contact
@@ -18,14 +19,18 @@ spec:
   containers:
     - image: gcr.io/externalized-properties/latest:v1
       name: extranalized-spring-configration
-      ports:
-        - containerPort: 8080
       imagePullPolicy: IfNotPresent
       env:
         - name: app.port
-          value: 8080
+          valueFrom:
+            configMapKeyRef:
+              name: spring-config
+              key:  port
         - name: app.profile
-          value: dev
+          valueFrom:
+            configMapKeyRef:
+              name: spring-config
+              key: tenant
         - name: organization.name
           valueFrom:
             configMapKeyRef:
