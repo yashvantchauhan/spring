@@ -30,7 +30,7 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: app.port
-              value: "8080"
+              value: "8000"
             - name: app.profile
               valueFrom:
                 configMapKeyRef:

@@ -1,34 +1,4 @@
 server:
-  port: 8080
-
-tenant:
-  name: local
-  title: abc corporation
-
----
-server:
-  port: 9090
-spring:
-  config:
-    activate:
-      on-profile: dev
-tenant:
-  name: dev
-  title: dev corporation
----
-server:
-  port: 9091
-spring:
-  config:
-    activate:
-      on-profile: uat
-tenant:
-  name: ${organization.name}
-  title: ${organization.title}
-  contact: ${organization.contact}
-
----
-server:
   port: ${app.port}
 spring:
   config:
