@@ -3,9 +3,19 @@ kind: ConfigMap
 metadata:
   name: spring-config
 data:
-  org: abc
-  title: abc organization title
-  contact: abc organization contact
+  org: abc dev
+  title: abc dev organization title
+  contact: abc dev organization contact
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-extranalized-config
+data:
+  org: abc extranalized dev
+  title: abc extranalized dev organization title
+  contact: abc extranalized dev organization contact
 
 ---
 apiVersion: apps/v1
@@ -15,7 +25,7 @@ metadata:
     app: load-balancer-extranalized-spring-configration
   name: extranalized-spring-configration
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       name: load-balancer-extranalized-spring-configration
@@ -34,31 +44,25 @@ spec:
             - name: SERVER_PORT
               value: "9090"
             - name: SPRING_PROFILES_ACTIVE
-              value: abc
-            - name: ORGANIZATION_NAME
-              valueFrom:
-                configMapKeyRef:
-                  name: spring-config
-                  key: org
-            - name: organization.name
-              valueFrom:
-                configMapKeyRef:
-                  name: spring-config
-                  key: org
-            - name: organization.title
-              valueFrom:
-                configMapKeyRef:
-                  name: spring-config
-                  key: title
-            - name: organization.contact
-              valueFrom:
-                configMapKeyRef:
-                  name: spring-config
-                  key: contact
+              value: dev
+#            - name: organization.name
+#              valueFrom:
+#                configMapKeyRef:
+#                  name: spring-config
+#                  key: org
+#            - name: organization.title
+#              valueFrom:
+#                configMapKeyRef:
+#                  name: spring-config
+#                  key: title
+#            - name: organization.contact
+#              valueFrom:
+#                configMapKeyRef:
+#                  name: spring-config
+#                  key: contact
           envFrom:
             - configMapRef:
-                name: spring-config
-
+                name: dev-extranalized-config
 
 #---
 #apiVersion: v1
