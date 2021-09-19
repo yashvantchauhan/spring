@@ -3,9 +3,9 @@ kind: ConfigMap
 metadata:
   name: spring-config
 data:
-  organization.name: abc
-  organization.title: abc organization title
-  organization.contact: abc organization contact
+  tenant: abc
+  title: abc organization title
+  contact: abc organization contact
 
 ---
 apiVersion: v1
@@ -30,17 +30,17 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: spring-config
-              key: organization.name
+              key: tenant
         - name: organization.title
           valueFrom:
             configMapKeyRef:
               name: spring-config
-              key: organization.title
+              key: title
         - name: organization.contact
           valueFrom:
             configMapKeyRef:
               name: spring-config
-              key: organization.contact
+              key: contact
   restartPolicy: Never
 
 ---
